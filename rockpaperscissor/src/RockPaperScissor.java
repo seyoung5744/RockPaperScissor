@@ -31,19 +31,11 @@ public enum RockPaperScissor {
             return GameResult.DRAW;
         }
 
-        GameResult gr = null;
-        switch (this) {
-            case ROCK:
-                gr = (opponent == SCISSOR) ? GameResult.WIN : GameResult.LOSE;
-                break;
-            case PAPER:
-                gr = (opponent == ROCK) ? GameResult.WIN : GameResult.LOSE;
-                break;
-            case SCISSOR:
-                gr = (opponent == PAPER) ? GameResult.WIN : GameResult.LOSE;
-                break;
-        }
-        return gr;
+        return switch (this) {
+            case ROCK -> (opponent == SCISSOR) ? GameResult.WIN : GameResult.LOSE;
+            case PAPER -> (opponent == ROCK) ? GameResult.WIN : GameResult.LOSE;
+            case SCISSOR -> (opponent == PAPER) ? GameResult.WIN : GameResult.LOSE;
+        };
     }
 
     public static RockPaperScissor fromDescription(String desc) {
